@@ -40,6 +40,7 @@ await userRepository.delete(userId);
 ```
 
 ### Migrations
+Update `package.json`
 ```json
 "scripts": {
   "migration:create": "dynamodb_eloquent migration:create",
@@ -47,6 +48,7 @@ await userRepository.delete(userId);
   "migration:revert": "dynamodb_eloquent migration:revert",
 }
 ```
+Run commands
 ```bash
 # For local
 # export AWS_REGION="ap-northeast-1"
