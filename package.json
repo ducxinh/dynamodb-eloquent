@@ -1,0 +1,54 @@
+{
+  "name": "dynamodb-eloquent",
+  "version": "1.0.8",
+  "description": "dynamodb eloquent",
+  "private": false,
+  "main": "lib/index.js",
+  "author": {
+    "name": "Nguyen Duc Xinh",
+    "email": "ducxinh.dn.201@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ducxinh/dynamodb-eloquent.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ducxinh/dynamodb-eloquent/issues"
+  },
+  "homepage": "https://github.com/ducxinh/dynamodb-eloquent",
+  "tags": [
+    "orm",
+    "typescript",
+    "DynamoDB"
+  ],
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "migration": "dynamodb_eloquent migration:run",
+    "test": "jest"
+  },
+  "bin": {
+    "dynamodb_eloquent": "./lib/bin/dynamodb_eloquent.js"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.332.0",
+    "@aws-sdk/lib-dynamodb": "^3.332.0",
+    "dotenv": "^16.1.4",
+    "inversify": "^6.0.1",
+    "reflect-metadata": "^0.1.13",
+    "uuid": "^9.0.0",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.2",
+    "@types/uuid": "^9.0.2",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.1.3"
+  }
+}
