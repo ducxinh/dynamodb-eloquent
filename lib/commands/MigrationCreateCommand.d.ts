@@ -1,4 +1,4 @@
-import * as yargs from "yargs";
+import * as yargs from 'yargs';
 /**
  * Create migration command.
  */
@@ -6,7 +6,7 @@ export declare class MigrationCreateCommand implements yargs.CommandModule {
     command: string;
     describe: string;
     builder(args: yargs.Argv): yargs.Argv<{
-        "table-suffix": unknown;
+        tableSuffix: unknown;
     } & {
         table: unknown;
     }>;

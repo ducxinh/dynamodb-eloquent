@@ -28,6 +28,7 @@ export interface ScanParams {
 }
 export interface DDBInterface {
     table: string;
+    useSortDelete?: boolean;
     create: (data: any) => void;
     createMany: (data: any[]) => void;
     findAll: (options: {
