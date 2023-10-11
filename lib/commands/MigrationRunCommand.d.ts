@@ -1,4 +1,4 @@
-import * as yargs from "yargs";
+import * as yargs from 'yargs';
 /**
  * Runs migration command.
  */

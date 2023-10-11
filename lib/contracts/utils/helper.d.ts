@@ -1,4 +1,4 @@
-import { DynamoDBClientConfig } from "@aws-sdk/client-dynamodb";
+import { DynamoDBClientConfig } from '@aws-sdk/client-dynamodb';
 export declare function chunks(arr: any[], chunkSize: number): any[];
 export declare function resolveDDBClientConfig(): DynamoDBClientConfig;
 export declare function parseLastEvaluatedKeyToString(lastEvaluatedKeyValue: any): string | null;
@@ -12,6 +12,7 @@ export declare function resolvePagination(limit: number, dataResponse: any): {
 };
 export declare function parseQuery(conditions: any): {
     KeyConditionExpression: string;
+    ExpressionAttributeNames: any;
     ExpressionAttributeValues: any;
 };
 export declare function parseQueryV2(params: any, keys: any): any;
