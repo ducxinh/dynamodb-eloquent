@@ -26,8 +26,11 @@ declare class DynamoDBRepository {
     findOne(id: any, keyName?: string): Promise<any>;
     findOrFailWithTrashed(id: any, keyName?: string): Promise<any>;
     findOrFail(id: any, keyName?: string): Promise<any>;
-    findOneBy(conditions: any, indexName: string): Promise<any>;
-    findBy(conditions: any, indexName?: string): Promise<any[]>;
+    resolveIndexField(indexName: string): any;
+    findOneBy(conditions: any, index?: string): Promise<any>;
+    findBy(conditions: any, index?: string): Promise<any[]>;
+    private findOneByV2;
+    private findByV2;
     findByIds(itemIds: any[]): Promise<any[]>;
     findByIdsWithTrashed(itemIds: any[]): Promise<any[]>;
     findItemsByIds(itemIds: any[]): Promise<any[]>;

@@ -11,12 +11,19 @@ npm i dynamodb-eloquent
 ```
 
 ## Usage
+
 ### Basic query
+
 ```ts
 import { DynamoDBRepository } from "dynamodb-eloquent";
 
 export class UserRepository extends DynamoDBRepository {
   protected table = `Users`;
+
+  // Please put all indexes you have here
+  protected mappingIndex = {
+    email: "email",
+  };
 }
 
 const userRepository = new UserRepository();
@@ -24,12 +31,12 @@ const userRepository = new UserRepository();
 // Create
 await userRepository.create({
   id: 1,
-  name: 'Bill',
-})
+  name: "Bill",
+});
 // Update
 await userRepository.update({
   id: 1,
-  name: 'John',
+  name: "John",
 });
 // List
 await userRepository.findAll();
@@ -37,10 +44,65 @@ await userRepository.findAll();
 await userRepository.findOrFail(userId);
 // Delete
 await userRepository.delete(userId);
+
+// Delete
+await userRepository.delete(userId);
+```
+## Filter
+### findBy
+`findBy` must use with `index`
+```js
+// Filter
+const params = { email: "abc@example.com" };
+const indexName = "email";
+const posts = await userRepository.findBy(params, indexName);
+```
+### findBy
+`findBy` must includes the `index`
+```js
+const params = { email: "abc@example.com" };
+const indexName = "email";
+const users = await userRepository.findBy(params, indexName);
+console.log(users.length)
+```
+### findOneBy
+`findOneBy` must includes the `index`
+```js
+const params = { email: "bill001@example.com" };
+const indexName = "email";
+const user = await userRepository.findOneBy(params, indexName);
+console.log(user.id)
+```
+## paginate
+```js
+const nextKey = undefined; // put nextKey here
+const limit = 10;
+const params = {
+  limit,
+  nextKey,
+  scanIndexForward: false,
+};
+const posts = await postRepository.paginate(params);
+// result
+{
+  data: [
+    { id: 'aa03e3a0-a9c8-439f-9b22-362ea59fc0ec', email: 'bill001@example.com'},
+    { id: '527a850f-0bfc-4da5-84d3-8a03c451e868', email: 'bill002@example.com'},
+    ...
+    { id: '527a850f-0bfc-4da5-84d3-8a03c451e868', email: 'bill010@example.com'},
+  ],
+  pagination: {
+    nextKey: 'eyJpZCI6ImFlMWRmYTRjLTM1NTUtNDM0ZC05NWU1LWFkZWVhMjllZDE1OCJ9',
+    count: 10,
+    perPage: 10
+  }
+}
 ```
 
 ### Migrations
-Update `package.json`
+
+#### Update `package.json`
+
 ```json
 "scripts": {
   "migration:create": "dynamodb_eloquent migration:create",
@@ -48,7 +110,9 @@ Update `package.json`
   "migration:revert": "dynamodb_eloquent migration:revert",
 }
 ```
-Run commands
+
+#### Run commands
+
 ```bash
 # For local
 # export AWS_REGION="ap-northeast-1"

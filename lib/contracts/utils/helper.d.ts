@@ -12,7 +12,6 @@ export declare function resolvePagination(limit: number, dataResponse: any): {
 };
 export declare function parseQuery(conditions: any): {
     KeyConditionExpression: string;
-    ExpressionAttributeNames: any;
     ExpressionAttributeValues: any;
 };
 export declare function parseQueryV2(params: any, keys: any): any;
