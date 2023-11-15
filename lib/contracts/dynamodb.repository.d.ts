@@ -8,6 +8,7 @@ declare class DynamoDBRepository {
     private static ddbClient;
     private static ddbDocClient;
     protected getTableTable(): string;
+    protected setTable(tableName: string): void;
     create(data: any): Promise<any>;
     createMany(items: any[]): Promise<any[]>;
     private createManyChunk;
