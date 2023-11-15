@@ -57,4 +57,6 @@ export interface DDBInterface {
     dropTables: () => void;
     deleteTable: (tableName: string) => void;
     transaction: (items: any[]) => void;
+    setTable: (tableName: string) => void;
+    getTableTable: () => string;
 }
