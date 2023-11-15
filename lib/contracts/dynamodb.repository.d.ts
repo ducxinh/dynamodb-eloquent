@@ -9,6 +9,13 @@ declare class DynamoDBRepository {
     private static ddbDocClient;
     getTableTable(): string;
     setTable(tableName: string): void;
+    setConfig({ profile, region, accessKeyId, secretAccessKey, sessionToken, }: {
+        profile?: string;
+        region?: string;
+        accessKeyId?: string;
+        secretAccessKey?: string;
+        sessionToken?: string;
+    }): void;
     create(data: any): Promise<any>;
     createMany(items: any[]): Promise<any[]>;
     private createManyChunk;

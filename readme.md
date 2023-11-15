@@ -10,6 +10,35 @@ DynamoDB Eloquent is an ORM that can run in NodeJS, and can be used with TypeScr
 npm i dynamodb-eloquent
 ```
 
+## Config AWS credentials
+### Using environment variables
+```bash
+# .env
+DDB_ENDPOINT=
+AWS_REGION=
+
+## way 1: using aws profile
+AWS_PROFILE=
+## way 2: using aws access key
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+```
+### Dynamically set credentials
+```ts
+ddbRepo.setConfig({
+  accessKeyId: 'AKIAxxx',
+  secretAccessKey: 'xxxxxx',
+  region: 'ap-northeast-1',
+});
+```
+```ts
+ddbRepo.setConfig({
+  profile: 'your-aws-profile',
+  region: 'ap-northeast-1',
+});
+```
+
+
 ## Usage
 
 ### Basic query
