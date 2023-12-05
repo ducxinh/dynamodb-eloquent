@@ -142,6 +142,15 @@ const posts = await postRepository.paginate(params);
 ```js
 const page1 = await postRepository.paginateV2({ limit: 10 });
 const page2 = await postRepository.paginateV2({ limit: 10, nextKey: page1.pagination.nextKey });
+
+const params = {
+  limit,
+  scanIndexForward: false,
+  where: {
+    shortDescription: `shortDescription7`,
+  },
+};
+const posts = await postRepository.paginateV2(params);
 ```
 
 ### Migrations
