@@ -26,6 +26,11 @@ export interface ScanParams {
     filter?: any;
     exclusiveStartKey?: any;
 }
+export interface ScanV2Params {
+    limit?: number;
+    filter?: any;
+    nextKey?: string | undefined;
+}
 export interface DDBInterface {
     table: string;
     useSortDelete?: boolean;
@@ -35,7 +40,10 @@ export interface DDBInterface {
         limit?: number;
     }) => void;
     findAllItems: (options?: any) => void;
+    scanData: (options: ScanParams) => void;
+    scanDataV2: (options: ScanParams) => void;
     paginate: (params: PaginationProps) => void;
+    paginateV2: (params: PaginationProps) => void;
     update: (data: any) => void;
     updateMany: (data: any[]) => void;
     findBy: (conditions: any, indexName?: string) => void;

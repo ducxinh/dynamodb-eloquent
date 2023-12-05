@@ -102,7 +102,17 @@ const indexName = "email";
 const user = await userRepository.findOneBy(params, indexName);
 console.log(user.id)
 ```
-## paginate
+### ScanData
+```ts
+const where = {
+  category: 'Clothes',
+  // additional conditions
+};
+const page1 = await postRepository.scanDataV2({ filter: where });
+const page2 = await postRepository.scanDataV2({ filter: where, nextKey: page1.nextKey });
+```
+
+### paginate
 ```js
 const nextKey = undefined; // put nextKey here
 const limit = 10;
@@ -126,6 +136,12 @@ const posts = await postRepository.paginate(params);
     perPage: 10
   }
 }
+```
+
+### paginateV2
+```js
+const page1 = await postRepository.paginateV2({ limit: 10 });
+const page2 = await postRepository.paginateV2({ limit: 10, nextKey: page1.pagination.nextKey });
 ```
 
 ### Migrations

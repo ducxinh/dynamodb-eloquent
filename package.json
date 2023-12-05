@@ -1,6 +1,6 @@
 {
   "name": "dynamodb-eloquent",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "Dynamodb eloquent ORM",
   "private": false,
   "main": "lib/index.js",

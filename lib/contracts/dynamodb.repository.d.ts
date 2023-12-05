@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { ListTablesCommandInput, CreateTableCommandInput, UpdateTableCommandInput } from '@aws-sdk/client-dynamodb';
-import { PaginationProps, FindAllParams, ScanParams } from './interface';
+import { PaginationProps, FindAllParams, ScanParams, ScanV2Params } from './interface';
 declare class DynamoDBRepository {
     protected table: string;
     protected useSortDelete: boolean;
@@ -26,6 +26,15 @@ declare class DynamoDBRepository {
     findAllWithTrashed(options?: FindAllParams): Promise<any[]>;
     findAllItems(filter?: any): Promise<any[]>;
     scanData(options?: ScanParams): Promise<import("@aws-sdk/lib-dynamodb").ScanCommandOutput>;
+    scanDataV2(options?: ScanV2Params): Promise<{
+        nextKey: string | undefined;
+        $metadata: import("@aws-sdk/types").ResponseMetadata;
+        ConsumedCapacity?: import("@aws-sdk/client-dynamodb").ConsumedCapacity | undefined;
+        Count?: number | undefined;
+        ScannedCount?: number | undefined;
+        Items?: Record<string, any>[] | undefined;
+        LastEvaluatedKey?: Record<string, any> | undefined;
+    }>;
     delete(id: any, keyName?: string): Promise<any>;
     sortDelete(id: any, keyName?: string): Promise<any>;
     deleteMany(ids: any[]): Promise<any[]>;
@@ -45,7 +54,15 @@ declare class DynamoDBRepository {
     paginate(params?: PaginationProps): Promise<{
         data: any;
         pagination: {
-            nextKey: string | null;
+            nextKey: string | undefined;
+            count: any;
+            perPage: number;
+        };
+    }>;
+    paginateV2(params?: PaginationProps): Promise<{
+        data: any;
+        pagination: {
+            nextKey: string | undefined;
             count: any;
             perPage: number;
         };
