@@ -15,5 +15,5 @@ export declare function parseQuery(conditions: any): {
     KeyConditionExpression: string;
     ExpressionAttributeValues: any;
 };
-export declare function parseQueryV2(params: any, keys: any): any;
+export declare function parseQueryV2(params: any, keys?: string[]): any;
 export declare function parseScanFilter(params: any): any;

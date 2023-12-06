@@ -56,7 +56,7 @@ export interface DDBInterface {
     delete: (id: any, keyName?: string) => void;
     deleteMany: (ids: any[]) => void;
     truncate: () => void;
-    query: (conditions: any, keys: any, indexName?: any) => void;
+    query: (conditions: any, keys: string[], indexName?: string) => void;
     listTables: () => void;
     createTable: (params: any) => void;
     createTableIfNotExisting: (params: any) => void;
@@ -66,5 +66,6 @@ export interface DDBInterface {
     deleteTable: (tableName: string) => void;
     transaction: (items: any[]) => void;
     setTable: (tableName: string) => void;
+    setMappingIndex: (data: any) => void;
     getTableTable: () => string;
 }

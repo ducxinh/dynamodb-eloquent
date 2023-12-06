@@ -9,6 +9,7 @@ declare class DynamoDBRepository {
     private static ddbDocClient;
     getTableTable(): string;
     setTable(tableName: string): void;
+    setMappingIndex(data: any): void;
     setConfig({ profile, region, accessKeyId, secretAccessKey, sessionToken, }: {
         profile?: string;
         region?: string;
@@ -70,7 +71,7 @@ declare class DynamoDBRepository {
     private paginateScan;
     private paginateQuery;
     private paginateQueryChunk;
-    query(conditions: any, keys: any, indexName?: any): Promise<Record<string, any>[] | undefined>;
+    query(conditions: any, keys: string[], indexName?: string): Promise<Record<string, any>[] | undefined>;
     truncate(): Promise<void>;
     listTables(params?: ListTablesCommandInput): Promise<import("@aws-sdk/client-dynamodb").ListTablesCommandOutput | {
         TableNames: any[];
