@@ -31,6 +31,9 @@ export interface ScanV2Params {
     filter?: any;
     nextKey?: string | undefined;
 }
+export interface FindByOptions {
+    sortDirection: 'asc' | 'desc';
+}
 export interface DDBInterface {
     table: string;
     useSortDelete?: boolean;
@@ -46,7 +49,7 @@ export interface DDBInterface {
     paginateV2: (params: PaginationProps) => void;
     update: (data: any) => void;
     updateMany: (data: any[]) => void;
-    findBy: (conditions: any, indexName?: string) => void;
+    findBy: (conditions: any, indexName?: string, options?: FindByOptions) => void;
     findOneBy: (conditions: any, indexName: string) => void;
     findByIds: (itemIds: string[] | number[]) => void;
     findItemsByIds: (itemIds: string[] | number[]) => void;

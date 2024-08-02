@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { ListTablesCommandInput, CreateTableCommandInput, UpdateTableCommandInput } from '@aws-sdk/client-dynamodb';
-import { PaginationProps, FindAllParams, ScanParams, ScanV2Params } from './interface';
+import { PaginationProps, FindAllParams, ScanParams, ScanV2Params, FindByOptions } from './interface';
 declare class DynamoDBRepository {
     protected table: string;
     protected useSortDelete: boolean;
@@ -46,7 +46,7 @@ declare class DynamoDBRepository {
     findOrFail(id: any, keyName?: string): Promise<any>;
     resolveIndexField(indexName: string): any;
     findOneBy(conditions: any, index?: string): Promise<any>;
-    findBy(conditions: any, index?: string): Promise<any[]>;
+    findBy(conditions: any, index?: string, options?: FindByOptions): Promise<any[]>;
     private findOneByV2;
     private findByV2;
     findByIds(itemIds: any[]): Promise<any[]>;
