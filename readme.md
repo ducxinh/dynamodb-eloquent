@@ -84,16 +84,32 @@ await userRepository.delete(userId);
 // Filter
 const params = { email: "abc@example.com" };
 const indexName = "email";
-const posts = await userRepository.findBy(params, indexName);
-```
-### findBy
-`findBy` must includes the `index`
-```js
-const params = { email: "abc@example.com" };
-const indexName = "email";
 const users = await userRepository.findBy(params, indexName);
-console.log(users.length)
 ```
+### findBy and Sorting
+Create the following index:
+```js
+{
+  IndexName: 'status',
+  KeySchema: [
+    { AttributeName: 'status', KeyType: 'HASH' },
+    { AttributeName: 'orderBy', KeyType: 'RANGE' },
+  ],
+  Projection: { ProjectionType: 'ALL' },
+},
+```
+
+```js
+const indexName = 'status'
+const params = { status: 'COMPLETED' }
+
+// Sorting ASC
+const users = await userRepository.findBy(params, indexName, { sortDirection: 'asc' });
+
+// Sorting DESC
+const users = await userRepository.findBy(params, indexName, { sortDirection: 'desc' });
+```
+
 ### findOneBy
 `findOneBy` must includes the `index`
 ```js
